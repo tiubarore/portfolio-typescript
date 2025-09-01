@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import Navbar from "./components/Navbar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,6 +24,10 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function meta({}: Route.MetaArgs) {
+  return [{ title: "My App" }, { name: "description", content: "my app" }];
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -33,7 +38,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Navbar />
+        <main className="max-w-6xl mx-auto py-8 px-6">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
